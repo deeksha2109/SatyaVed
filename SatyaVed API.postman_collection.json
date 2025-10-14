@@ -1,0 +1,448 @@
+{
+	"info": {
+		"_postman_id": "d0ff413a-8e62-44e8-bdba-eccc89f95646",
+		"name": "SatyaVed API",
+		"description": "Postman collection for SatyaVed backend APIs (Node.js + Express + MongoDB)",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "47146091",
+		"_collection_link": "https://deekshamavadiya11-670025.postman.co/workspace/Deeksha's-Workspace~b5c220c5-2a86-4dfc-8b76-2f4d27090a0e/collection/47146091-d0ff413a-8e62-44e8-bdba-eccc89f95646?action=share&source=collection_link&creator=47146091"
+	},
+	"item": [
+		{
+			"name": "Auth",
+			"item": [
+				{
+					"name": "Register",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer {{token}}",
+								"disabled": true
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"fullName\": \"John Doe\",\n  \"email\": \"riya@gmail.com\",\n  \"password\": \"riya123\"\n}\n"
+						},
+						"url": {
+							"raw": "http://localhost:5000/api/auth/register",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"auth",
+								"register"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Login",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Length",
+								"value": "",
+								"type": "text",
+								"disabled": true
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2OGM2YjQ0MWIxZWE2MzVjMzI5NTFlODQiLCJpYXQiOjE3NTc4NTI3MzgsImV4cCI6MTc1ODQ1NzUzOH0.vSN6THTzAUPCWS-6dd5zVZS95Ln2V9A_UN6RUSWKqc8",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{ \"email\": \"admin@gmail.com\", \"password\": \"yourpassword\" }\r\n"
+						},
+						"url": {
+							"raw": "http://localhost:5000/api/auth/login",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"auth",
+								"login"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"auth": {
+				"type": "bearer",
+				"bearer": [
+					{
+						"key": "token",
+						"value": "{{token}}",
+						"type": "string"
+					}
+				]
+			},
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"type": "text/javascript",
+						"packages": {},
+						"exec": [
+							""
+						]
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"packages": {},
+						"exec": [
+							""
+						]
+					}
+				}
+			]
+		},
+		{
+			"name": "Myths",
+			"item": [
+				{
+					"name": "Get All Myths",
+					"protocolProfileBehavior": {
+						"disabledSystemHeaders": {}
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text",
+								"disabled": true
+							}
+						],
+						"url": {
+							"raw": "http://localhost:5000/api/myths",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"myths"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Myth by ID",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:5000/api/myths/68c67f6f07703b6cba8f5733",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"myths",
+								"68c67f6f07703b6cba8f5733"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update Myth (Admin)",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2OGM2YzU0Y2ZlZTU4NTZhN2ZiZjFhMTgiLCJyb2xlIjoiYWRtaW4iLCJpYXQiOjE3NTc4NTcxMjYsImV4cCI6MTc1ODQ2MTkyNn0.yPvN2qTyWC23DT94o4naO9pzZqbCF3bXGCCbWingA8A"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"title\": \"The Legend of the Phoeni\",\n  \"content\": \"A legendary firebird that rises from its ashes in mythology.........\",\n  \"tags\": [\"bird\", \"rebirth\", \"legend\", \"fire\"],\n  \"category\": \"Mythical Creature\",\n  \"status\": \"pending\"\n}\n"
+						},
+						"url": {
+							"raw": "http://localhost:5000/api/myths/68c67a3a4eabc5b7c11c6cb5",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"myths",
+								"68c67a3a4eabc5b7c11c6cb5"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete Myth (Admin)",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2OGM2YjUzOGIxZWE2MzVjMzI5NTFlODkiLCJpYXQiOjE3NTc4NTMwNDgsImV4cCI6MTc1ODQ1Nzg0OH0.2f2tpFdviLmm7tg2pEwl0ygJBkD5fNGmWF1ga1U0G0o"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"_id\" :\"68c67a3a4eabc5b7c11c6cb5\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:5000/api/myths",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"myths"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Add Myth",
+					"protocolProfileBehavior": {
+						"disabledSystemHeaders": {
+							"content-type": true
+						}
+					},
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2OGM2Nzg2MTBjOTA1Y2IyY2YxZWMzZWMiLCJyb2xlIjoidXNlciIsImlhdCI6MTc1NzgzNzQzOSwiZXhwIjoxNzU4NDQyMjM5fQ.n9zxHBd_o2MT0d1uyknE329STibacsp2mLjzkrNjOBk",
+								"type": "text"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"title\": \"The Origin of the Ganges\",\r\n  \"category\": \"mythology\",\r\n  \"imageUrl\": \"https://example.com/image.jpg\",\r\n  \"shortDescription\": \"How the sacred Ganga came to Earth.\",\r\n  \"fullStory\": \"According to the legend, the Ganges descended from the heavens to purify the Earth...\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:5000/api/myths",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"myths"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "votes",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2OGVkMGRhMzgzZTI5ZGEyYTAxMzM1NzYiLCJyb2xlIjoidXNlciIsImlhdCI6MTc2MDM2NjAxNiwiZXhwIjoxNzYwOTcwODE2fQ.iKx4zV0iFxNI9BH93edWFZLeFays8h7CNVK2QYJ6_9U",
+								"type": "text"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": " { \"vote\": 1 }",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:5000/api/myths/68c67a3a4eabc5b7c11c6cb5/vote",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"myths",
+								"68c67a3a4eabc5b7c11c6cb5",
+								"vote"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Submissions",
+			"item": [
+				{
+					"name": "Create Submission (Public)",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"title\": \"Lighting Diyas at Dusk\",\n  \"content\": \"Families light oil lamps at dusk as a symbol of positivity...\",\n  \"submittedBy\": { \"name\": \"Sonia\", \"email\": \"sonia@example.com\" }\n}"
+						},
+						"url": {
+							"raw": "http://localhost:5000/api/submissions",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"submissions"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get All Submissions (Admin)",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2OGM2YzU0Y2ZlZTU4NTZhN2ZiZjFhMTgiLCJyb2xlIjoiYWRtaW4iLCJpYXQiOjE3NTgxMTAxOTIsImV4cCI6MTc1ODcxNDk5Mn0.FBxJMynFE0Ji4LyG1V_51NIOvM2ikOA6NV4EBAjoC4A"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:5000/api/submissions",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"submissions"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Review Submission (Approve/Reject)",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2OGM2YzU0Y2ZlZTU4NTZhN2ZiZjFhMTgiLCJyb2xlIjoiYWRtaW4iLCJpYXQiOjE3NTgxMTAxOTIsImV4cCI6MTc1ODcxNDk5Mn0.FBxJMynFE0Ji4LyG1V_51NIOvM2ikOA6NV4EBAjoC4A"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"status\": \"Approved\"\n}\n"
+						},
+						"url": {
+							"raw": "http://localhost:5000/api/submissions/68ca33aecb6838acab2d12cf/review",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"submissions",
+								"68ca33aecb6838acab2d12cf",
+								"review"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	],
+	"variable": [
+		{
+			"key": "token",
+			"value": ""
+		},
+		{
+			"key": "mythId",
+			"value": ""
+		},
+		{
+			"key": "submissionId",
+			"value": ""
+		}
+	]
+}
