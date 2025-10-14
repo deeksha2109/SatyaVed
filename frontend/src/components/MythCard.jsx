@@ -2,13 +2,38 @@ import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { Clock, Eye, ThumbsUp, ThumbsDown } from 'lucide-react';
+import { useAuth } from '../contexts/AuthContext';
+import toast from 'react-hot-toast';
 
 const MythCard = ({ myth, index = 0 }) => {
-  const [votes, setVotes] = useState(myth.votes || 0);
+  const { token } = useAuth();
+  const [votes, setVotes] = useState(
+    typeof myth?.upvotes === 'number' || typeof myth?.downvotes === 'number'
+      ? (myth.upvotes || 0) - (myth.downvotes || 0)
+      : (myth.votes || 0)
+  );
 
-  const handleVote = (type) => {
-    setVotes((prev) => type === 'up' ? prev + 1 : prev > 0 ? prev - 1 : 0);
-    // 🔗 Here you can later call an API to store votes in DB
+  const handleVote = async (type) => {
+    if (!myth?.id) return;
+    if (!token) {
+      toast.error('Please log in to vote');
+      return;
+    }
+    try {
+      const res = await fetch(`/api/myths/${myth.id}/vote`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization': `Bearer ${token}`
+        },
+        body: JSON.stringify({ vote: type === 'up' ? 1 : -1 })
+      });
+      if (!res.ok) throw new Error('Vote failed');
+      const data = await res.json();
+      setVotes((data?.upvotes || 0) - (data?.downvotes || 0));
+    } catch (e) {
+      toast.error('Could not register your vote');
+    }
   };
 
   return (

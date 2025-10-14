@@ -32,7 +32,9 @@ const Myths = () => {
           title: m.title,
           category: m.category || 'General',
           image: m.image || m.imageUrl || '',
-          shortDescription: m.excerpt || (m.content ? String(m.content).slice(0, 140) + '…' : '')
+          shortDescription: m.excerpt || (m.content ? String(m.content).slice(0, 140) + '…' : ''),
+          upvotes: typeof m.upvotes === 'number' ? m.upvotes : 0,
+          downvotes: typeof m.downvotes === 'number' ? m.downvotes : 0
         }));
         setAllMyths(items);
         const uniq = Array.from(new Set(items.map(i => i.category))).filter(Boolean);
