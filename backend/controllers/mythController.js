@@ -195,6 +195,32 @@ const deleteMyth = async (req, res) => {
 };
 
 
+// Return stats for the authenticated user's myths
+async function userStats(req, res) {
+    try {
+        const userId = req.user?.id;
+        if (!userId) return res.status(401).json({ message: 'Not authorized' });
+
+        const mongoose = require('mongoose');
+        const [total, approved, pending, viewsAgg] = await Promise.all([
+            Myth.countDocuments({ createdBy: userId }),
+            Myth.countDocuments({ createdBy: userId, status: 'approved' }),
+            Myth.countDocuments({ createdBy: userId, status: 'pending' }),
+            Myth.aggregate([
+                { $match: { createdBy: new mongoose.Types.ObjectId(userId) } },
+                { $group: { _id: null, totalViews: { $sum: { $ifNull: ['$views', 0] } } } }
+            ])
+        ]);
+
+        const totalViews = viewsAgg[0]?.totalViews || 0;
+        res.json({ totalMyths: total, approved, pending, totalViews });
+    } catch (err) {
+        console.error('userStats error:', err);
+        res.status(500).json({ message: 'Server error' });
+    }
+}
+
+
 module.exports = {
     listMyths,
     getMyth,
@@ -203,7 +229,8 @@ module.exports = {
     deleteMyth,
     approveMyth,
     rejectMyth,
-    voteMyth
+    voteMyth,
+    userStats
 };
 
 // Handle voting on myths (upvote/downvote)

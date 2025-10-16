@@ -7,6 +7,8 @@ import toast from 'react-hot-toast';
 const Dashboard = () => {
   const { user, token } = useAuth();
   const [userMyths, setUserMyths] = useState([]);
+  const [totals, setTotals] = useState({ totalViews: 0, totalMyths: 0, approved: 0, pending: 0 });
+
   const [loading, setLoading] = useState(false);
   const [showAddForm, setShowAddForm] = useState(false);
   const [editingMyth, setEditingMyth] = useState(null);
@@ -45,6 +47,24 @@ const Dashboard = () => {
           views: m.views || 0,
         }));
         setUserMyths(items);
+
+        // Fetch server-side totals for accurate Total Views
+        if (token) {
+          const statsRes = await fetch('/api/myths/me/stats', { headers: { 'Authorization': `Bearer ${token}` } });
+          if (statsRes.ok) {
+            const s = await statsRes.json();
+            setTotals({
+              totalViews: s.totalViews || 0,
+              totalMyths: s.totalMyths || items.length,
+              approved: s.approved || 0,
+              pending: s.pending || 0,
+            });
+          } else {
+            setTotals(t => ({ ...t, totalViews: items.reduce((sum, myth) => sum + (myth.views || 0), 0) }));
+          }
+        } else {
+          setTotals(t => ({ ...t, totalViews: items.reduce((sum, myth) => sum + (myth.views || 0), 0) }));
+        }
       } catch (e) {
         setUserMyths([]);
       } finally {
@@ -52,7 +72,7 @@ const Dashboard = () => {
       }
     };
     load();
-  }, [user?._id]);
+  }, [user?._id, token]);
 
   const handleInputChange = (e) => {
     setFormData({
@@ -133,22 +153,22 @@ const Dashboard = () => {
   const stats = [
     {
       label: 'Total Myths',
-      value: userMyths.length,
+      value: totals.totalMyths || userMyths.length,
       color: 'text-blue-600 bg-blue-100 dark:bg-blue-900/30'
     },
     {
       label: 'Approved',
-      value: userMyths.filter(m => m.status === 'approved').length,
+      value: totals.approved || userMyths.filter(m => m.status === 'approved').length,
       color: 'text-green-600 bg-green-100 dark:bg-green-900/30'
     },
     {
       label: 'Pending',
-      value: userMyths.filter(m => m.status === 'pending').length,
+      value: totals.pending || userMyths.filter(m => m.status === 'pending').length,
       color: 'text-yellow-600 bg-yellow-100 dark:bg-yellow-900/30'
     },
     {
       label: 'Total Views',
-      value: userMyths.reduce((sum, myth) => sum + myth.views, 0),
+      value: totals.totalViews,
       color: 'text-purple-600 bg-purple-100 dark:bg-purple-900/30'
     }
   ];

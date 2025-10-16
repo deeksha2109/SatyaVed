@@ -1,5 +1,6 @@
 import React from 'react';
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import { BrowserRouter as Router, Routes, Route, useLocation, useNavigate } from 'react-router-dom';
+
 import { Toaster } from 'react-hot-toast';
 import { ThemeProvider } from './contexts/ThemeContext';
 import { AuthProvider } from './contexts/AuthContext';
@@ -17,6 +18,30 @@ import AdminDashboard from './pages/AdminDashboard';
 import ProtectedRoute from './components/ProtectedRoute';
 import ForgotPassword from './pages/forgotPassword';
 
+function InitialRedirect() {
+  const navigate = useNavigate();
+  const location = useLocation();
+  React.useEffect(() => {
+    if ('scrollRestoration' in window.history) {
+      window.history.scrollRestoration = 'manual';
+    }
+    if (location.pathname !== '/') {
+      navigate('/', { replace: true });
+    }
+    // Ensure we land at top
+    window.scrollTo({ top: 0, behavior: 'auto' });
+  }, []);
+  return null;
+}
+
+function ScrollToTop() {
+  const location = useLocation();
+  React.useEffect(() => {
+    window.scrollTo({ top: 0, behavior: 'auto' });
+  }, [location.pathname]);
+  return null;
+}
+
 function App() {
   return (
     <ThemeProvider>
@@ -26,6 +51,8 @@ function App() {
             <div className="bg-paper-texture bg-fixed">
               <Header />
               <main className="min-h-screen">
+                <InitialRedirect />
+                <ScrollToTop />
                 <Routes>
                   <Route path="/" element={<Home />} />
                   <Route path="/about" element={<About />} />

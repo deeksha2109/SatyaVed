@@ -4,6 +4,10 @@ const mythController = require("../controllers/mythController");
 const { protect } = require("../middleware/auth"); // Use destructuring!
 
 router.get("/", mythController.listMyths);
+
+// User stats should be BEFORE dynamic :id route
+router.get("/me/stats", protect, mythController.userStats);
+
 router.get("/:id", mythController.getMyth);
 
 // Require auth so server uses token to set createdBy
