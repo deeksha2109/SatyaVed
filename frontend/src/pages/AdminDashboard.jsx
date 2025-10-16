@@ -16,15 +16,18 @@ const AdminDashboard = () => {
       if (!token) return;
       setLoading(true);
       try {
-        const [subsRes, usersRes] = await Promise.all([
+        const [subsRes, usersRes, analyticsRes] = await Promise.all([
           fetch('/api/submissions', { headers: { 'Authorization': `Bearer ${token}` } }),
           fetch('/api/admin/users', { headers: { 'Authorization': `Bearer ${token}` } }),
+          fetch('/api/admin/analytics', { headers: { 'Authorization': `Bearer ${token}` } }),
         ]);
         if (!subsRes.ok) throw new Error('Failed to load submissions');
         if (!usersRes.ok) throw new Error('Failed to load users');
+        if (!analyticsRes.ok) throw new Error('Failed to load analytics');
 
         const subsData = await subsRes.json();
         const usersData = await usersRes.json();
+        const analyticsData = await analyticsRes.json();
 
         const items = (subsData || []).map(s => ({
           id: s._id,
@@ -49,16 +52,15 @@ const AdminDashboard = () => {
         }));
         setUsers(userItems);
 
-        const totalMyths = userItems.reduce((sum, u) => sum + (u.mythsCount || 0), 0);
         const totalUsers = userItems.length;
         const activeUsers = userItems.filter(u => u.status === 'active').length;
         setAnalytics({
-          totalMyths,
-          approvedMyths: totalMyths - pending.length,
-          pendingMyths: pending.length,
+          totalMyths: analyticsData.totalMyths,
+          approvedMyths: analyticsData.approvedMyths,
+          pendingMyths: analyticsData.pendingMyths,
           totalUsers,
           activeUsers,
-          totalViews: 0,
+          totalViews: analyticsData.totalViews,
           thisMonthMyths: 0,
           thisMonthUsers: 0
         });

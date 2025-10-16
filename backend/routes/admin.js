@@ -10,6 +10,25 @@ const requireAdmin = [protect, (req, res, next) => {
   next();
 }];
 
+// Platform analytics
+router.get("/analytics", requireAdmin, async (req, res) => {
+  try {
+    const [totalMyths, approvedMyths, pendingMyths, aggViews] = await Promise.all([
+      Myth.countDocuments({}),
+      Myth.countDocuments({ status: "approved" }),
+      Myth.countDocuments({ status: "pending" }),
+      Myth.aggregate([
+        { $group: { _id: null, totalViews: { $sum: { $ifNull: ["$views", 0] } } } }
+      ])
+    ]);
+
+    const totalViews = (aggViews[0]?.totalViews) || 0;
+    res.json({ totalMyths, approvedMyths, pendingMyths, totalViews });
+  } catch (err) {
+    res.status(500).json({ message: err.message });
+  }
+});
+
 // List users with myths count
 router.get("/users", requireAdmin, async (req, res) => {
   try {

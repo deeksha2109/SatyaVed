@@ -14,7 +14,7 @@ const Myths = () => {
     const fetchMyths = async () => {
       try {
         const limit = 50;
-        const firstRes = await fetch(`/api/myths?limit=${limit}&page=1`);
+        const firstRes = await fetch(`/api/myths?status=approved&limit=${limit}&page=1`);
         if (!firstRes.ok) throw new Error('Failed to load myths');
         const first = await firstRes.json();
         const pages = first.pages || 1;
@@ -22,7 +22,7 @@ const Myths = () => {
         if (pages > 1) {
           const pagePromises = [];
           for (let p = 2; p <= pages; p++) {
-            pagePromises.push(fetch(`/api/myths?limit=${limit}&page=${p}`).then(r => r.ok ? r.json() : { data: [] }));
+            pagePromises.push(fetch(`/api/myths?status=approved&limit=${limit}&page=${p}`).then(r => r.ok ? r.json() : { data: [] }));
           }
           const rest = await Promise.all(pagePromises);
           rest.forEach(chunk => { if (chunk?.data) all = all.concat(chunk.data); });

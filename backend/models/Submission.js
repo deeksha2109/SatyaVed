@@ -3,6 +3,8 @@ const mongoose = require("mongoose");
 const submissionSchema = new mongoose.Schema({
     title: { type: String, required: true, trim: true },
     content: { type: String, required: true, trim: true },
+    // Reference to created Myth to sync statuses
+    mythId: { type: mongoose.Schema.Types.ObjectId, ref: "Myth", index: true },
 
     // Who submitted
     submittedBy: {
@@ -24,6 +26,7 @@ const submissionSchema = new mongoose.Schema({
 
 // Indexes for queries
 submissionSchema.index({ status: 1 });
+submissionSchema.index({ mythId: 1 });
 submissionSchema.index({ "submittedBy.email": 1 });
 submissionSchema.index({ title: "text", content: "text" });
 

@@ -19,6 +19,7 @@ const mythSchema = new mongoose.Schema({
     // Voting fields
     upvotes: { type: Number, default: 0 },
     downvotes: { type: Number, default: 0 },
+    views: { type: Number, default: 0 },
     voters: [{
         user: { type: mongoose.Schema.Types.ObjectId, ref: 'User' },
         vote: { type: Number, enum: [1, -1] } // 1 for upvote, -1 for downvote

@@ -37,7 +37,11 @@ const listMyths = async (req, res) => {
 
 const getMyth = async (req, res) => {
     try {
-        const myth = await Myth.findById(req.params.id);
+        const myth = await Myth.findByIdAndUpdate(
+            req.params.id,
+            { $inc: { views: 1 } },
+            { new: true }
+        );
         if (!myth) return res.status(404).json({ message: "Myth not found" });
         res.json(myth);
     } catch (err) {
@@ -88,6 +92,7 @@ const createMyth = async (req, res) => {
             await Submission.create({
                 title: newMyth.title,
                 content: newMyth.content,
+                mythId: newMyth._id,
                 submittedBy: { name: submitterName, email: submitterEmail },
                 status: "pending"
             });
