@@ -33,18 +33,28 @@ const reviewSubmission = async (req, res) => {
             submission.reviewComment = req.body.reviewComment;
         }
 
-        // If linked to a myth, sync myth status/approvedBy
-        if (submission.mythId) {
-            const myth = await Myth.findById(submission.mythId);
-            if (myth) {
-                // Only update to approved/rejected; leave content intact
-                if (submission.status === 'approved' || submission.status === 'rejected') {
-                    myth.status = submission.status;
-                    if (req.user?.id) myth.approvedBy = req.user.id;
-                    await myth.save();
-                }
+        // Sync myth status with submission
+        const applyStatusToMyth = async (myth) => {
+            if (!myth) return;
+            if (submission.status === 'approved' || submission.status === 'rejected') {
+                myth.status = submission.status;
+                if (req.user?.id) myth.approvedBy = req.user.id;
+                await myth.save();
             }
+        };
+
+        let mythToUpdate = null;
+        if (submission.mythId) {
+            mythToUpdate = await Myth.findById(submission.mythId);
         }
+        // Fallback: try to locate a matching myth if mythId is missing or invalid
+        if (!mythToUpdate) {
+            mythToUpdate = await Myth.findOne({
+                title: submission.title,
+                content: submission.content,
+            });
+        }
+        await applyStatusToMyth(mythToUpdate);
 
         const updated = await submission.save();
         res.json(updated);
