@@ -143,8 +143,6 @@ export const mythsData = [
     dateAdded: "2024-01-26",
     relatedMyths: [7, 8, 5]
   },
-
-  // 🆕 20 NEW MYTHS
   {
     id: 13,
     title: "Sneezing Before Starting Work is a Bad Omen",
@@ -173,7 +171,7 @@ export const mythsData = [
     id: 15,
     title: "Do Not Cross Someone While They Lie Down",
     category: "Daily Rituals",
-    image: "https://images.pexels.com/photos/3771069/pexels-photo-3771069.jpeg?auto=compress&cs=tinysrgb&w=800",
+    image: "/assets/myths/sleeping_sunset.jpg",
     shortDescription: "An old belief that crossing over a person lying down shortens their lifespan.",
     fullStory: "In many Indian households, children are told never to step over someone who is lying down. This tradition has practical roots: stepping over someone could cause them injury, disturb their rest, or spread dirt and germs onto them in earlier times when floors were dusty. Symbolically, it was seen as disrespectful to cross someone's life force. Even today, the rule is taught to instill respect for personal space and consideration for others.",
     views: 341,
@@ -269,7 +267,7 @@ export const mythsData = [
     id: 23,
     title: "Do Not Sleep During Sunset",
     category: "Daily Rituals",
-    image: "https://images.pexels.com/photos/462024/pexels-photo-462024.jpeg?auto=compress&cs=tinysrgb&w=800",
+    image: "/assets/myths/sleeping_sunset.jpeg",
     shortDescription: "A belief that sleeping during twilight leads to laziness and bad health.",
     fullStory: "Twilight is considered a transition period when the body should stay alert. Sleeping at this time disrupts the natural circadian rhythm and could lead to grogginess or headaches. In traditional Indian households, this time was meant for lighting lamps and prayers, bringing families together and promoting discipline.",
     views: 374,
@@ -281,7 +279,7 @@ export const mythsData = [
     id: 24,
     title: "Tying Black Thread for Protection",
     category: "Protective Rituals",
-    image: "https://images.pexels.com/photos/5380751/pexels-photo-5380751.jpeg?auto=compress&cs=tinysrgb&w=800",
+    image: "/assets/myths/black_thread.jpeg",
     shortDescription: "A tradition to protect newborns and children from the evil eye.",
     fullStory: "The black thread or bracelet is believed to absorb negative energy and protect the wearer from envy and harm. Black, being an absorber of energy, was symbolically chosen to shield children and even adults. This practice also acted as an early health marker – if the thread loosened or broke, it reminded parents to check on the child's health and well-being.",
     views: 441,
@@ -293,7 +291,7 @@ export const mythsData = [
     id: 25,
     title: "Chilies and Mustard Seeds in Fire During Fights",
     category: "Protective Rituals",
-    image: "https://images.pexels.com/photos/4207780/pexels-photo-4207780.jpeg?auto=compress&cs=tinysrgb&w=800",
+    image: "/assets/myths/chillies_and_mustard.png",
     shortDescription: "A ritual to remove negativity from home after arguments or fights.",
     fullStory: "Burning chillies and mustard seeds creates strong fumes that irritate eyes and nose, causing tears and sneezing. This was considered a symbolic cleansing of anger and evil energy from the household. Scientifically, the fumes may have also acted as natural insect repellents, purifying the home environment.",
     views: 312,
@@ -302,22 +300,10 @@ export const mythsData = [
     relatedMyths: [24, 18, 20]
   },
   {
-    id: 26,
-    title: "Do Not Cross Road When Funeral Passes",
-    category: "Superstitions",
-    image: "https://images.pexels.com/photos/5586614/pexels-photo-5586614.jpeg?auto=compress&cs=tinysrgb&w=800",
-    shortDescription: "A belief that crossing a funeral procession brings bad luck.",
-    fullStory: "In ancient times, funeral processions were considered sacred and crossing them was seen as disrespectful. There were also practical reasons – crossing a procession could cause accidents or disrupt rituals. This belief ensured respect for the departed and smooth passage for mourners.",
-    views: 267,
-    author: "Cultural Respect",
-    dateAdded: "2024-02-09",
-    relatedMyths: [19, 21, 28]
-  },
-  {
     id: 27,
     title: "Do Not Leave Slippers Upside Down",
     category: "Daily Rituals",
-    image: "https://images.pexels.com/photos/3825035/pexels-photo-3825035.jpeg?auto=compress&cs=tinysrgb&w=800",
+    image: "/assets/myths/shoes_upside_downside.jpeg",
     shortDescription: "A warning that leaving footwear upside down brings quarrels at home.",
     fullStory: "The sight of upside-down footwear was considered inauspicious as it symbolized disorder and disrespect for the home deity. Practically, it also prevents dirt from touching the upper part of the slipper, which could soil feet. This simple rule encouraged cleanliness and orderliness at home.",
     views: 329,
@@ -329,7 +315,7 @@ export const mythsData = [
     id: 28,
     title: "Touch Feet of Elders for Blessings",
     category: "Daily Rituals",
-    image: "https://images.pexels.com/photos/755167/pexels-photo-755167.jpeg?auto=compress&cs=tinysrgb&w=800",
+    image: "/assets/myths/bowing_down.jpeg",
     shortDescription: "A gesture of respect and a way to receive positive energy from elders.",
     fullStory: "Touching feet is believed to activate a subtle energy exchange — the younger person bows, symbolizing humility, while the elder places hands on their head, symbolizing blessings. This act also stretches the spine, promoting physical flexibility and respect. Psychologically, it strengthens relationships and family harmony.",
     views: 398,
@@ -341,7 +327,7 @@ export const mythsData = [
     id: 29,
     title: "Offering Tulsi Leaves to Lord Vishnu",
     category: "Festivals",
-    image: "https://images.pexels.com/photos/1281227/pexels-photo-1281227.jpeg?auto=compress&cs=tinysrgb&w=800",
+    image: "/assets/myths/Tulsi.png",
     shortDescription: "Tulsi is considered sacred and dear to Lord Vishnu, used in rituals for purification.",
     fullStory: "Tulsi leaves are offered during morning prayers to symbolize devotion and purity. The plant has antibacterial properties and was historically used to purify drinking water. This tradition also encouraged people to grow Tulsi at home, which naturally improves air quality and repels mosquitoes.",
     views: 374,
@@ -353,13 +339,49 @@ export const mythsData = [
     id: 30,
     title: "Do Not Cut Peepal Tree on Saturday",
     category: "Daily Rituals",
-    image: "https://images.pexels.com/photos/1727659/pexels-photo-1727659.jpeg?auto=compress&cs=tinysrgb&w=800",
+    image: "/assets/myths/peepal_tree.jpeg",
     shortDescription: "A belief rooted in the sacredness of the Peepal tree and its ecological importance.",
     fullStory: "The Peepal tree releases oxygen even at night, making it vital for the environment. Saturday is associated with Shani Dev, and cutting the tree was believed to anger the deity. This practice preserved biodiversity and ensured survival of a tree that supported many birds and animals.",
     views: 352,
     author: "Environmental Traditions",
     dateAdded: "2024-02-13",
     relatedMyths: [2, 18, 29]
+  },
+  {
+    id: 31,
+    title: "The Rain Goddess and Monsoon Blessings",
+    category: "Festivals",
+    image: "/assets/myths/rain_goddess.jpg",
+    shortDescription: "Ancient worship of rain deities to ensure abundant monsoons and agricultural prosperity.",
+    fullStory: "In Indian mythology, rain goddesses like Varuni and Parjanya were worshipped to bring timely monsoons essential for agriculture. Communities performed rituals and dances during the dry season to invoke the rain deity's blessings. These practices united villages in collective prayer and celebration, strengthening social bonds. The tradition also helped people understand weather patterns and prepare for the monsoon season. Today, rain festivals continue in many regions, celebrating the life-giving power of water and reminding us of our dependence on natural cycles for survival and prosperity.",
+    views: 287,
+    author: "Vedic Mythology",
+    dateAdded: "2024-02-14",
+    relatedMyths: [10, 29, 9]
+  },
+  {
+    id: 33,
+    title: "The Phoenix Bird - Symbol of Rebirth",
+    category: "Mythology",
+    image: "/assets/myths/phoenix_bird.jpg",
+    shortDescription: "The legendary immortal bird that rises from its own ashes, symbolizing renewal and eternal life.",
+    fullStory: "The Phoenix, known as 'Garuda' in Indian mythology and similar to the Chinese 'Fenghuang', is a mythical bird that cyclically regenerates by rising from its own ashes. This powerful symbol represents transformation, resilience, and the eternal cycle of death and rebirth. Ancient cultures believed the Phoenix lived for hundreds of years before building a nest of aromatic wood and setting itself ablaze, only to emerge renewed from the flames. The myth teaches us about overcoming adversity, embracing change, and finding strength in difficult times. It reminds us that endings are often new beginnings, and that we have the power to reinvent ourselves no matter how dire our circumstances may seem.",
+    views: 512,
+    author: "Ancient Mythology",
+    dateAdded: "2024-02-16",
+    relatedMyths: [8, 21, 19]
+  },
+  {
+    id: 34,
+    title: "The Sacred Ganga River",
+    category: "Mythology",
+    image: "/assets/myths/ganga_river.jpg",
+    shortDescription: "The holy river believed to descend from heaven, purifying sins and granting salvation.",
+    fullStory: "The Ganga (Ganges) is revered as the most sacred river in Hinduism, believed to have descended from heaven to earth through Lord Shiva's locks. According to legend, King Bhagiratha performed intense penance to bring Ganga to earth to liberate his ancestors' souls. The river's waters are considered purifying, capable of washing away sins and granting moksha (liberation). Millions of devotees bathe in the Ganga during festivals like Kumbh Mela, seeking spiritual cleansing. Beyond mythology, the Ganga has been the lifeline of Indian civilization for millennia, supporting agriculture, trade, and culture. The reverence for Ganga also promoted environmental consciousness, though modern pollution challenges this ancient respect. The river remains a powerful symbol of purity, devotion, and the interconnection between the divine and earthly realms.",
+    views: 634,
+    author: "Hindu Mythology",
+    dateAdded: "2024-02-17",
+    relatedMyths: [10, 29, 31]
   }
 ];
 
