@@ -18,7 +18,7 @@ const Dashboard = () => {
     image: ''
   });
 
-  const categories = ['Daily Rituals', 'Festivals', 'Superstitions'];
+  const categories = ['Daily Rituals', 'Festivals', 'Superstitions', 'Protective Rituals', 'Mythology'];
   const statuses = {
     pending: { label: 'Pending Review', icon: Clock, color: 'text-yellow-600 bg-yellow-100 dark:bg-yellow-900/30' },
     approved: { label: 'Approved', icon: CheckCircle, color: 'text-green-600 bg-green-100 dark:bg-green-900/30' },
@@ -281,15 +281,15 @@ const Dashboard = () => {
 
               <div>
                 <label className="block text-sm font-semibold text-gray-700 dark:text-gray-300 mb-2">
-                  Image URL
+                  Image URL or Path
                 </label>
                 <input
-                  type="url"
+                  type="text"
                   name="image"
                   value={formData.image}
                   onChange={handleInputChange}
                   className="w-full px-4 py-3 border border-gray-300 dark:border-gray-600 rounded-xl focus:outline-none focus:ring-2 focus:ring-golden-500 focus:border-transparent bg-white dark:bg-gray-700 text-gray-800 dark:text-white"
-                  placeholder="https://example.com/image.jpg"
+                  placeholder="https://example.com/image.jpg or /assets/myths/image.jpg"
                 />
               </div>
 
